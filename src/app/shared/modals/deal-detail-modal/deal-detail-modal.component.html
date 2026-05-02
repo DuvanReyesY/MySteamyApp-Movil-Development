@@ -1,0 +1,52 @@
+<ion-content class="modal-wrapper">
+  <div class="image-header">
+    <img [src]="deal.thumb" alt="Cover" class="header-image" />
+    <div class="header-overlay"></div>
+    
+    <ion-button fill="clear" (click)="dismiss()" class="close-btn">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="main-content">
+    <div class="game-info">
+      <h2>{{ deal.title }}</h2>
+      
+      <div class="store-badge" *ngIf="deal.storeID">
+        <img [src]="'https://www.cheapshark.com/img/stores/icons/' + getStoreIconIndex(deal.storeID) + '.png'" 
+             alt="Store Icon" class="store-icon" />
+        <span>{{ getStoreName(deal.storeID) }}</span>
+      </div>
+    </div>
+
+    <div class="ratings-block">
+      <div class="rating-box deal-rating">
+        <ion-icon class="rating-star" name="star"></ion-icon>
+        <span class="score">{{ deal.dealRating || '0.0' }}</span>
+        <span class="label">DEAL RATING</span>
+      </div>
+      
+      <div class="rating-box metacritic-rating">
+        <ion-icon name="game-controller"></ion-icon>
+        <span class="score">{{ deal.metacriticScore !== '0' ? deal.metacriticScore : 'N/A' }}</span>
+        <span class="label">METACRITIC</span>
+      </div>
+    </div>
+
+    <div class="price-section">
+      <div class="price-container">
+        <span class="sale-price">${{ deal.salePrice }}</span>
+        <span class="normal-price">${{ deal.normalPrice }}</span>
+      </div>
+      
+      <div class="savings-info" *ngIf="deal.savings !== '0.000000'">
+        You save ${{ savingsAmount | number:'1.2-2' }} ({{ deal.savings | number:'1.0-0' }}%)
+      </div>
+    </div>
+
+    <ion-button expand="block" (click)="viewDeal()" class="action-btn">
+      VIEW DEAL
+      <ion-icon name="open-outline" slot="end"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>

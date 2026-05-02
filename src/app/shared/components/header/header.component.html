@@ -1,0 +1,15 @@
+
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <div class="toolbar-content">
+      <div class="header-text">
+        <h1 class="header-title">Game Deals</h1>
+        <p class="header-subtitle">CRYSTAL CLEAR SAVINGS</p>
+      </div>
+      <div class="header-avatar">
+        <ion-icon name="game-controller-outline"></ion-icon>
+      </div>
+    </div>
+    <ion-searchbar placeholder="Search for games..." [value]="searchValue" [debounce]="500" [disabled]="isSearchDisabled" (ionInput)="onSearch($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>

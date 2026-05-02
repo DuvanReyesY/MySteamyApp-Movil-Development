@@ -1,17 +1,15 @@
 <ion-tabs>
-
+  <ion-router-outlet></ion-router-outlet>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="deals" href="/tabs/deals">
-      <ion-icon aria-hidden="true" name="triangle"></ion-icon>
+      <ion-icon aria-hidden="true" name="star"></ion-icon>
       <ion-label>Deals</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="favorite" href="/tabs/favorite">
-      <ion-icon aria-hidden="true" name="ellipse"></ion-icon>
+      <ion-icon aria-hidden="true" name="heart"></ion-icon>
       <ion-label>Favorite</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-
-  <ion-router-outlet></ion-router-outlet>
 
 </ion-tabs>

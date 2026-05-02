@@ -1,0 +1,113 @@
+
+ion-content.modal-wrapper {
+  --background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-header {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+
+  .header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to top, rgba(17, 21, 32, 1) 0%, transparent 100%);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    --color: rgba(255, 255, 255, 0.7);
+    font-size: 2rem;
+    margin: 0;
+  }
+}
+
+.main-content {
+  background: #111520;
+  padding: 16px 20px 24px 20px;
+  flex-grow: 1;
+  border-radius: 0 0 12px 12px;
+
+  .game-info {
+    margin-bottom: 20px;
+    h2 { margin: 0 0 8px 0; color: white; font-weight: bold; font-size: 1.4rem; }
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px 8px;
+      border-radius: 6px;
+      gap: 6px;
+      color: #94a3b8;
+      font-weight: 500;
+      .store-icon { width: 20px; height: 20px; border-radius: 4px; object-fit: cover; background: #fff; }
+    }
+  }
+
+  .ratings-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+    .rating-box {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      
+      ion-icon { color: #06b6d4; font-size: 1.5rem; margin-bottom: 8px; }
+      .score { color: #fff; font-size: 1.6rem; font-weight: bold; margin-bottom: 2px; }
+      .label { color: rgba(255, 255, 255, 0.6); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; }
+    }
+  }
+
+  .rating-star {
+    color: #ffb300 !important;
+  }
+
+  .price-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 24px;
+
+    .price-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      .sale-price { color: #fff; font-size: 1.8rem; font-weight: 800; }
+      .normal-price { color: rgba(255, 255, 255, 0.4); font-size: 1rem; text-decoration: line-through; }
+    }
+    .savings-info { color: #06b6d4; font-size: 0.9rem; font-weight: 600; text-align: center; }
+  }
+
+  .action-btn {
+    --background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --color: #ffffff;
+    --border-radius: 12px;
+    --box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+}

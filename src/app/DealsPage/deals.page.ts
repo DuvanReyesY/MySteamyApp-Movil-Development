@@ -16,12 +16,16 @@ export class DealsPage implements OnInit {
   isLoading = true;
   searchQuery = '';
 
+  savedFavoriteId: string | null = null;
+
   constructor(
     private gameProvider: GameProvider,
     private toastCtrl: ToastController
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    const { value } = await Preferences.get({ key: 'favoriteGame' });
+    this.savedFavoriteId = value;
     this.loadTopDeals();
   }
 
@@ -54,15 +58,23 @@ export class DealsPage implements OnInit {
     });
   }
 
-  async saveFavorite(gameId: string) {
-    await Preferences.set({ key: 'favoriteGame', value: gameId });
-    
-    const toast = await this.toastCtrl.create({
-      message: 'Game saved as favorite! 🎮',
-      duration: 2000,
-      position: 'bottom',
-      color: 'success'
-    });
-    toast.present();
+  async saveFavorite(deal: Deal) {
+
+    if (this.savedFavoriteId === deal.gameID) {
+      
+      this.savedFavoriteId = null;
+      await Preferences.remove({ key: 'favoriteGame' });
+    } else {
+      this.savedFavoriteId = deal.gameID;
+      await Preferences.set({ key: 'favoriteGame', value: JSON.stringify(deal) });
+      
+      const toast = await this.toastCtrl.create({
+        message: 'Game saved as favorite! 🎮',
+        duration: 2000,
+        position: 'bottom',
+        color: 'success'
+      });
+      toast.present();
+    }
   }
 }

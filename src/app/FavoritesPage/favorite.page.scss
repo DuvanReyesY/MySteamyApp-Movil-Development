@@ -1,0 +1,39 @@
+ion-content {
+  --background: linear-gradient(135deg, #000000 0%, #919fa3 50%, #143f52 100%);
+}
+
+.section-container {
+  margin-top: 10px;
+}
+
+.title-header {
+  color: #ffffff;
+  font-weight: 580;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+  gap: 12px;
+}
+
+.favorite-card-wrapper {
+  app-card {
+    display: block;
+    width: 100%;
+    flex: none !important;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  margin-top: 100px;
+  color: #94a3b8;
+  ion-icon { font-size: 4rem; margin-bottom: 15px; color: #4facfe; }
+  h3 { color: white; font-weight: bold; }
+}
+
+app-card {
+    flex: 0 0 100%;
+    width: 100%;
+
+    
+}

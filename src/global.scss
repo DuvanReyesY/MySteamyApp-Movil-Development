@@ -17,6 +17,14 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+ion-router-outlet {
+  pointer-events: none !important;
+}
+
+ion-router-outlet > * {
+  pointer-events: all !important;
+}
+
 @import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */

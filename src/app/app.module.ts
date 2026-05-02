@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule
+    
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

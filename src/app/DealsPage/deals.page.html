@@ -1,14 +1,8 @@
-<ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <ion-title >
-      Game Deals
-    </ion-title>
-    <small>CRYSTAL CLEAR SAVINGS</small>
-    <ion-searchbar placeholder="Search for games..." [debounce]="500" (ionInput)="onSearch($event)"></ion-searchbar>
-  </ion-toolbar>
-</ion-header>
+<app-header 
+  (searchInput)="onSearch($event)">
+</app-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" [fullscreen]="true">
 
   <div *ngIf="isLoading">
     <ion-skeleton-text animated style="width: 100%; height: 200px; border-radius: 16px; margin-bottom: 16px;"></ion-skeleton-text>
@@ -16,11 +10,12 @@
   </div>
 
   <div *ngIf="!isLoading && !searchQuery">
-    <h2 class="title-header">🔥 Top 5 Deals</h2>
+    <h2 class="title-header">🔥 Hottest Deals Right Now</h2>
     <div class="horizontal-scroll">
       <app-card 
         *ngFor="let deal of topDeals" 
         [deal]="deal" 
+        [isFavorite]="deal.gameID === savedFavoriteId"
         (favoriteClicked)="saveFavorite($event)">
       </app-card>
     </div>
@@ -28,22 +23,14 @@
 
   <div *ngIf="!isLoading && searchQuery && searchResults.length > 0">
     <h2 class="title-header">Results for "{{ searchQuery }}"</h2>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="12" size-md="6" *ngFor="let deal of searchResults">
-          <ion-card class="deal-card glass-effect">
-            <img [src]="deal.thumb" alt="Cover" />
-            <ion-card-header>
-              <ion-card-title>{{ deal.title }}</ion-card-title>
-              <ion-card-subtitle>${{ deal.salePrice }}</ion-card-subtitle>
-            </ion-card-header>
-            <ion-button fill="clear" (click)="saveFavorite(deal.gameID)">
-              <ion-icon name="heart-outline" slot="icon-only" color="danger"></ion-icon>
-            </ion-button>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <div class="search-results-grid">
+      <app-card 
+        *ngFor="let deal of searchResults"
+        [deal]="deal"
+        [isFavorite]="deal.gameID === savedFavoriteId"
+        (favoriteClicked)="saveFavorite($event)">
+      </app-card>
+    </div>
   </div>
 
   <div class="empty-state" *ngIf="!isLoading && searchQuery && searchResults.length === 0">

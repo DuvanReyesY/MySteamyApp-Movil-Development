@@ -1,16 +1,41 @@
-<ion-card class="deal-card glass-effect">
-  <img [src]="deal.thumb" alt="Cover" />
-  <ion-card-header>
-    <ion-card-title>{{ deal.title }}</ion-card-title>
-    <ion-card-subtitle>
-      ${{ deal.salePrice }} 
-      <span class="discount" *ngIf="deal.savings !== '0.000000'">
-        -{{ deal.savings | number:'1.0-0' }}%
-      </span>
-    </ion-card-subtitle>
-  </ion-card-header>
-  
-  <ion-button fill="clear" (click)="onFavorite()">
-    <ion-icon name="heart" slot="icon-only" color="danger"></ion-icon>
-  </ion-button>
+<ion-card class="premium-deal-card" (click)="openDealDetails()">
+
+  <div class="image-wrapper">
+    <img [src]="deal.thumb" alt="Cover" />
+    
+    <div class="image-overlay"></div>
+    
+    <div class="glass-heart" fill="clear" (click)="onFavorite($event)" (touchend)="onFavorite($event)" [class.active]="isFavorite">
+      <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
+    </div>
+
+    <div class="neon-badge" *ngIf="deal.savings !== '0.000000'">
+      -{{ deal.savings | number:'1.0-0' }}%
+    </div>
+  </div>
+
+  <div class="card-body">
+    <h3 class="game-title">{{ deal.title }}</h3>
+    
+    <div class="store-info" *ngIf="deal.storeID">
+      <img [src]="'https://www.cheapshark.com/img/stores/icons/' + (+deal.storeID - 1) + '.png'" 
+           alt="Store" 
+           class="store-icon" />
+    </div>
+
+    <div class="card-footer">
+      <div class="meta-score" [class.no-score]="deal.dealRating === '0.0' || !deal.dealRating">
+        <ion-icon name="star"></ion-icon>
+        <span class="score">{{ deal.dealRating || '0.0' }}</span>
+      </div>
+
+      <div class="price-box">
+        <span class="old-price" *ngIf="deal.normalPrice !== deal.salePrice">
+          ${{ deal.normalPrice }}
+        </span>
+        <span class="new-price">${{ deal.salePrice }}</span>
+      </div>
+    </div>
+  </div>
+
 </ion-card>

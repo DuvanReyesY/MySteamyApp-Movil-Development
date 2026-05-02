@@ -1,19 +1,12 @@
-// 1. Fondo de la pantalla con un gradiente moderno
+
 ion-content {
-  --background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  --background: linear-gradient(135deg, #000000 0%, #919fa3 50%, #143f52 100%);
 }
 
-// 2. Estilos para el texto y cabeceras
-.title-header {
-  color: #ffffff;
-  font-weight: 700;
-  margin-left: 16px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
-
-// 3. Contenedor del Carrusel (AQUÍ ESTÁ LA MAGIA DEL SCROLL)
 .horizontal-scroll {
   display: flex;
+  touch-action: pan-x;
+  scroll-snap-type: x mandatory;
   overflow-x: auto;
   overflow-y: hidden;
   flex-wrap: nowrap; 
@@ -23,17 +16,38 @@ ion-content {
   
   &::-webkit-scrollbar { display: none; }
 
-  // Asegura que app-card se comporte como un bloque deslizable
   app-card {
-    display: block;
     flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 }
 
-// Estilos para el estado vacío
+.title-header {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 580;
+  margin: 12px 0 16px 0;
+  letter-spacing: -0.5px;
+  gap: 12px;
+}
+
 .empty-state {
   text-align: center;
   margin-top: 50px;
   color: var(--ion-color-medium);
   ion-icon { font-size: 64px; }
+}
+
+.search-results-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 16px 20px 16px;
+
+  app-card {
+    flex: 0 0 calc(100% - 32px);
+    width: calc(100% - 32px);
+
+  }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { GameProvider } from '../shared/services/game-provider';
 import { Preferences } from '@capacitor/preferences';
-import { GameDetails } from '../core/models/cheapshark.models';
+import { Deal } from '../core/models/cheapshark.models';
 
 @Component({
   standalone: false,
@@ -10,32 +9,20 @@ import { GameDetails } from '../core/models/cheapshark.models';
   styleUrls: ['favorite.page.scss']
 })
 export class FavoritePage {
-  favoriteGameDetails: GameDetails | null = null; 
-  isLoading = false;
-  constructor(private gameProvider: GameProvider) {}
 
-  // Se ejecuta cada vez que el usuario entra a la pestaña
+  favoriteDeal: Deal | null = null;
+  isLoading = true;
+  constructor() {}
+
   async ionViewWillEnter() {
-    this.loadFavorite();
-  }
-
-  async loadFavorite() {
-    this.isLoading = true;
-    
-    // Leer el ID guardado desde Capacitor
     const { value } = await Preferences.get({ key: 'favoriteGame' });
-
-    if (value) {
-      this.gameProvider.getGameDetails(value).subscribe({
-        next: (details) => {
-          this.favoriteGameDetails = details;
-          this.isLoading = false;
-        },
-        error: () => this.isLoading = false
-      });
-    } else {
-      this.favoriteGameDetails = null;
-      this.isLoading = false;
-    }
+    this.favoriteDeal = value ? JSON.parse(value) : null;
+    this.isLoading = false;
   }
+
+  async removeFavorite() {
+    await Preferences.remove({ key: 'favoriteGame' });
+    this.favoriteDeal = null;
+  }
+
 }
