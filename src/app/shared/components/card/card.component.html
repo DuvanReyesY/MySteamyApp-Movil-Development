@@ -1,0 +1,16 @@
+<ion-card class="deal-card glass-effect">
+  <img [src]="deal.thumb" alt="Cover" />
+  <ion-card-header>
+    <ion-card-title>{{ deal.title }}</ion-card-title>
+    <ion-card-subtitle>
+      ${{ deal.salePrice }} 
+      <span class="discount" *ngIf="deal.savings !== '0.000000'">
+        -{{ deal.savings | number:'1.0-0' }}%
+      </span>
+    </ion-card-subtitle>
+  </ion-card-header>
+  
+  <ion-button fill="clear" (click)="onFavorite()">
+    <ion-icon name="heart" slot="icon-only" color="danger"></ion-icon>
+  </ion-button>
+</ion-card>
