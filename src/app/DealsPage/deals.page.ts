@@ -29,6 +29,17 @@ export class DealsPage implements OnInit {
     this.loadTopDeals();
   }
 
+  async ionViewWillEnter() {
+    const { value } = await Preferences.get({ key: 'favoriteGame' });
+    
+    if (value) {
+      const savedDeal = JSON.parse(value);
+      this.savedFavoriteId = savedDeal.gameID;
+    } else {
+      this.savedFavoriteId = null;
+    }
+  }
+
   loadTopDeals() {
     this.isLoading = true;
     this.gameProvider.getTopDeals().subscribe({

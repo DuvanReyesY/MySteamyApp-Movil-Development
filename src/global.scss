@@ -17,6 +17,10 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+ion-modal {
+  --background: #111520;
+}
+
 ion-router-outlet {
   pointer-events: none !important;
 }
