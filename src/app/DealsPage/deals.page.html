@@ -4,9 +4,38 @@
 
 <ion-content class="ion-padding" [fullscreen]="true">
 
-  <div *ngIf="isLoading">
-    <ion-skeleton-text animated style="width: 100%; height: 200px; border-radius: 16px; margin-bottom: 16px;"></ion-skeleton-text>
-    <ion-skeleton-text animated style="width: 100%; height: 200px; border-radius: 16px;"></ion-skeleton-text>
+  <div *ngIf="isLoading && !searchQuery">
+    <ion-skeleton-text animated style="width: 45%; height: 26px; border-radius: 10px; margin: 0 16px 20px 16px;"></ion-skeleton-text>
+    <div style="display: flex; gap: 14px; overflow: hidden; padding: 0 16px 20px 16px;">
+      <div *ngFor="let i of [1,2,3]" style="flex: 0 0 230px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(59, 58, 58, 0.4);">
+        <ion-skeleton-text animated style="width: 100%; height: 150px; margin: 0; border-radius: 0;"></ion-skeleton-text>
+        <div style="background: linear-gradient(145deg, #36373b, #2c2f36); padding: 14px 12px 16px 12px;">
+          <ion-skeleton-text animated style="width: 85%; height: 15px; border-radius: 8px; margin-bottom: 10px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 55%; height: 13px; border-radius: 8px; margin-bottom: 16px;"></ion-skeleton-text>
+          <div style="display: flex; justify-content: space-between;">
+            <ion-skeleton-text animated style="width: 35%; height: 13px; border-radius: 8px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 28%; height: 13px; border-radius: 8px;"></ion-skeleton-text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading && searchQuery">
+    <ion-skeleton-text animated style="width: 45%; height: 26px; border-radius: 10px; margin: 0 16px 20px 16px;"></ion-skeleton-text>
+    <div style="display: flex; flex-direction: column; gap: 14px; padding: 0 16px;">
+      <div *ngFor="let i of [1,2,3]" style="border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(59, 58, 58, 0.4);">
+        <ion-skeleton-text animated style="width: 100%; height: 190px; margin: 0; border-radius: 0;"></ion-skeleton-text>
+        <div style="background: linear-gradient(145deg, #36373b, #2c2f36); padding: 14px 16px 16px 16px;">
+          <ion-skeleton-text animated style="width: 70%; height: 16px; border-radius: 8px; margin-bottom: 10px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 35%; height: 13px; border-radius: 8px; margin-bottom: 16px;"></ion-skeleton-text>
+          <div style="display: flex; justify-content: space-between;">
+            <ion-skeleton-text animated style="width: 30%; height: 13px; border-radius: 8px;"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 25%; height: 13px; border-radius: 8px;"></ion-skeleton-text>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div *ngIf="!isLoading && !searchQuery">
